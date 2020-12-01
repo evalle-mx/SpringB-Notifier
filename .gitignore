@@ -1,0 +1,13 @@
+#Archivos Gradle
+.gradle/
+build/
+
+#Archivos Class
+bin/
+
+
+
+############ Eclipse  ###########
+.project
+.settings/
+

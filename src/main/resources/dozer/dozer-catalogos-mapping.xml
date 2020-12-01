@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mappings  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+   xmlns='http://dozer.sourceforge.net'
+   xsi:schemaLocation='http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd'>
+
+  <!-- Los mapeos son bidireccionales (a menos que se indique lo contrario).
+       Es decir, este mapeo sirve para pasar de un InvasorDto a un Invasor,
+       y viceversa. 
+  -->
+  
+ 
+  <!-- EmpresaParametro -->
+  <mapping map-null="false">
+    <class-a>net.tce.dto.EmpresaParametroDto</class-a>
+    <class-b>net.tce.model.EmpresaParametro</class-b>
+    <field>
+      <a>idEmpresaParametro</a>
+      <b>idEmpresaParametro</b>
+    </field>
+    <field>
+      <a>idConf</a>
+      <b>conf.idConf</b>
+    </field>
+     <field>
+      <a>idTipoParametro</a>
+      <b>tipoParametro.idTipoParametro</b>
+    </field>     
+    <field>
+      <a>orden</a>
+      <b>orden</b>
+    </field>    
+     <field>
+      <a>contexto</a>
+      <b>contexto</b>
+    </field>
+    <field>
+      <a>valor</a>
+      <b>valor</b>
+    </field>
+  </mapping>
+ 
+  
+</mappings>

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mappings  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+   xmlns='http://dozer.sourceforge.net'
+   xsi:schemaLocation='http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd'>
+
+  <!-- Los mapeos son bidireccionales (a menos que se indique lo contrario).
+       Es decir, este mapeo sirve para pasar de un InvasorDto a un Invasor,
+       y viceversa. 
+  -->
+  
+   <!-- Posicion -->
+     <mapping map-null="false">
+    <class-a>net.tce.dto.BtcPosicionDto</class-a>
+    <class-b>net.tce.model.Posicion</class-b>
+     <field>
+      <a>idTipoPrestacion</a>
+      <b>tipoPrestacion.idTipoPrestacion</b>
+    </field>
+    <field>
+      <a>idPeriodicidadPago</a>
+      <b>periodicidadPago.idPeriodicidadPago</b>
+    </field>
+    <field>
+      <a>idAmbitoGeografico</a>
+      <b>ambitoGeografico.idAmbitoGeografico</b>
+    </field>
+    <field>
+      <a>idTipoContrato</a>
+      <b>tipoContrato.idTipoContrato</b>
+    </field>
+    <field>
+      <a>idTipoJornada</a>
+      <b>tipoJornada.idTipoJornada</b>
+    </field>
+     <field custom-converter="net.tce.util.converter.BooleanDozerConverter">
+      <a>sueldoNegociable</a>
+      <b>sueldoNegociable</b>
+    </field>
+     <field custom-converter="net.tce.util.converter.BooleanDozerConverter">
+      <a>esConfidencial</a>
+      <b>esConfidencial</b>
+    </field>
+  </mapping>
+  
+  
+  <!-- BitacoraPosicion -->
+  <mapping map-null="false">
+    <class-a>net.tce.dto.BtcPosicionDto</class-a>
+    <class-b>net.tce.model.BitacoraPosicion</class-b>
+     <field>
+      <a>idTipoPrestacion</a>
+      <b>tipoPrestacion.idTipoPrestacion</b>
+    </field>
+    <field>
+      <a>idPeriodicidadPago</a>
+      <b>periodicidadPago.idPeriodicidadPago</b>
+    </field>
+    <field>
+      <a>idAmbitoGeografico</a>
+      <b>ambitoGeografico.idAmbitoGeografico</b>
+    </field>
+    <field>
+      <a>idTipoContrato</a>
+      <b>tipoContrato.idTipoContrato</b>
+    </field>
+    <field>
+      <a>idRelacionEmpresaPersona</a>
+      <b>relacionEmpresaPersona.idRelacionEmpresaPersona</b>
+    </field>
+    <field>
+      <a>idRelacionEmpresaPersonaS</a>
+      <b>relacionEmpresaPersonaS.idRelacionEmpresaPersona</b>
+    </field>
+    <field>
+      <a>idTipoJornada</a>
+      <b>tipoJornada.idTipoJornada</b>
+    </field>
+    <field>
+      <a>idPerfilPosicion</a>
+      <b>perfilPosicion.idPerfilPosicion</b>
+    </field>
+     <field>
+      <a>idAreaPerfil</a>
+      <b>areaPerfil.idAreaPerfil</b>
+    </field>
+     <field>
+      <a>idTipoOperacionBitacora</a>
+      <b>tipoOperacionBitacora.idTipoOperacionBitacora</b>
+    </field>
+    <field custom-converter="net.tce.util.converter.DateDozerConverter">
+      <a>fechaBitacora</a>
+      <b>fechaBitacora</b>
+    </field>
+     <field custom-converter="net.tce.util.converter.BooleanDozerConverter">
+      <a>sueldoNegociable</a>
+      <b>sueldoNegociable</b>
+    </field>
+     <field custom-converter="net.tce.util.converter.BooleanDozerConverter">
+      <a>esConfidencial</a>
+      <b>esConfidencial</b>
+    </field>
+  </mapping>
+  
+   <!--Domicilio -->
+  <mapping map-null="false">
+    <class-a>net.tce.dto.BtcDomicilioDto</class-a>
+    <class-b>net.tce.model.Domicilio</class-b>
+     <field>
+      <a>idTipoPrecision</a>
+      <b>tipoPrecision.idTipoPrecision</b>
+    </field>
+     <field>
+      <a>idCodigoProceso</a>
+      <b>codigoProceso.idCodigoProceso</b>
+    </field>
+     <field>
+      <a>idAsentamiento</a>
+      <b>asentamiento.idAsentamiento.</b>
+    </field>
+     <field>
+      <a>idTipoDomicilio</a>
+      <b>tipoDomicilio.idTipoDomicilio.</b>
+    </field>
+  </mapping>
+  
+   <!-- BitacoraDomicilio -->
+  <mapping map-null="false">
+    <class-a>net.tce.dto.BtcDomicilioDto</class-a>
+    <class-b>net.tce.model.BitacoraDomicilio</class-b>
+     <field>
+      <a>idBitacoraPosicion</a>
+      <b>bitacoraPosicion.idBitacoraPosicion</b>
+    </field>
+     <field>
+      <a>idTipoPrecision</a>
+      <b>tipoPrecision.idTipoPrecision</b>
+    </field>
+     <field>
+      <a>idCodigoProceso</a>
+      <b>codigoProceso.idCodigoProceso</b>
+    </field>
+     <field>
+      <a>idAsentamiento</a>
+      <b>asentamiento.idAsentamiento.</b>
+    </field>
+  </mapping>
+  
+   <!-- BitacoraCompetenciaPerfil -->
+  <mapping map-null="false">
+    <class-a>net.tce.dto.BtcCompetenciaPerfilDto</class-a>
+    <class-b>net.tce.model.CompetenciaPerfil</class-b>
+    <field>
+      <a>idCompetencia</a>
+      <b>competencia.idCompetencia</b>
+    </field>
+    <field custom-converter="net.tce.util.converter.BooleanDozerConverter">
+      <a>seleccionado</a>
+      <b>seleccionado</b>
+    </field>
+  </mapping>
+  
+ <!-- BitacoraCompetenciaPerfil -->
+  <mapping map-null="false">
+    <class-a>net.tce.dto.BtcCompetenciaPerfilDto</class-a>
+    <class-b>net.tce.model.BitacoraCompetenciaPerfil</class-b>
+     <field>
+      <a>idBitacoraPosicion</a>
+      <b>bitacoraPosicion.idBitacoraPosicion</b>
+    </field>
+    <field>
+      <a>idCompetencia</a>
+      <b>competencia.idCompetencia</b>
+    </field>
+    <field custom-converter="net.tce.util.converter.BooleanDozerConverter">
+      <a>seleccionado</a>
+      <b>seleccionado</b>
+    </field>
+  </mapping>
+  
+
+  <!-- BitacoraPerfilTextoNgram -->
+  <mapping map-null="false">
+    <class-a>net.tce.dto.BtcPerfilTextoNgramDto</class-a>
+    <class-b>net.tce.model.BitacoraPerfilTextoNgram</class-b>
+     <field>
+      <a>idBitacoraPosicion</a>
+      <b>bitacoraPosicion.idBitacoraPosicion</b>
+    </field>
+  </mapping>
+
+ <!-- BitacoraPoliticaValor -->
+  <mapping map-null="false">
+    <class-a>net.tce.dto.BtcPoliticaValorDto</class-a>
+    <class-b>net.tce.model.BitacoraPoliticaValor</class-b>
+     <field>
+      <a>idBitacoraPosicion</a>
+      <b>bitacoraPosicion.idBitacoraPosicion</b>
+    </field>
+    <field>
+      <a>idTipoGenero</a>
+      <b>tipoGenero.idTipoGenero</b>
+    </field>
+    <field>
+      <a>idTipoDispViajar</a>
+      <b>tipoDispViajar.idTipoDispViajar</b>
+    </field>
+    <field>
+      <a>idPolitica</a>
+      <b>politica.idPolitica</b>
+    </field>
+    <field>
+      <a>idGradoAcademico</a>
+      <b>gradoAcademico.idGradoAcademico</b>
+    </field>
+    <field>
+      <a>idEstadoCivil</a>
+      <b>estadoCivil.idEstadoCivil</b>
+    </field>
+    <field>
+      <a>idIdioma</a>
+      <b>idioma.idIdioma</b>
+    </field>
+    <field>
+      <a>idEstatusEscolar</a>
+      <b>estatusEscolar.idEstatusEscolar</b>
+    </field>
+    <field>
+      <a>idDominio</a>
+      <b>dominio.idDominio</b>
+    </field>
+  </mapping>
+  
+ 
+</mappings>

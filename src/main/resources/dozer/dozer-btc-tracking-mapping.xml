@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mappings  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+   xmlns='http://dozer.sourceforge.net'
+   xsi:schemaLocation='http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd'>
+
+  <!-- Los mapeos son bidireccionales (a menos que se indique lo contrario).
+       Es decir, este mapeo sirve para pasar de un InvasorDto a un Invasor,
+       y viceversa. 
+  -->
+  
+  <!-- BitacoraTrack -->
+   <mapping map-null="false">
+    <class-a>net.tce.dto.BtcTrackingDto</class-a>
+    <class-b>net.tce.model.BitacoraTrack</class-b>
+     <field>
+      <a>idPosicion</a>
+      <b>posicion.idPosicion</b>
+    </field>
+    <field>
+      <a>idRelacionEmpresaPersona</a>
+      <b>relacionEmpresaPersona.idRelacionEmpresaPersona</b>
+    </field>
+    <field>
+      <a>idTipoEventoBitacora</a>
+      <b>tipoEventoBitacora.idTipoEventoBitacora</b>
+    </field>
+    <field>
+      <a>idTipoModuloBitacora</a>
+      <b>tipoModuloBitacora.idTipoModuloBitacora</b>
+    </field>  
+    <field>
+      <a>idBitacoraTrackRel</a>
+      <b>bitacoraTrack.idBitacoraTrack</b>
+    </field>  
+  </mapping>
+  
+  <!-- BitacoraModelorsc -->
+   <mapping map-null="false">
+    <class-a>net.tce.dto.BtcModeloRscDto</class-a>
+    <class-b>net.tce.model.BitacoraModelorsc</class-b>
+     <field custom-converter="net.tce.util.converter.BooleanDozerConverter">
+      <a>activo</a>
+      <b>activo</b>
+    </field>  
+    <field custom-converter="net.tce.util.converter.BooleanDozerConverter">
+      <a>monitor</a>
+      <b>monitor</b>
+    </field>
+    <field custom-converter="net.tce.util.converter.BooleanDozerConverter">
+      <a>principal</a>
+      <b>principal</b>
+    </field>
+  </mapping>
+  
+   <!-- Monitor-->
+   <mapping map-null="false">
+    <class-a>net.tce.dto.BtcTrackingMonPosDto</class-a>
+    <class-b>net.tce.model.BitacoraMonitor</class-b>
+    <field custom-converter="net.tce.util.converter.BooleanDozerConverter">
+      <a>principal</a>
+      <b>principal</b>
+    </field>   
+  </mapping>
+  
+   <!-- BitacoraTrackMon-->
+   <mapping map-null="false">
+    <class-a>net.tce.dto.BtcTrackingMonPosDto</class-a>
+    <class-b>net.tce.model.BitacoraTrackMon</class-b>
+   <field custom-converter="net.tce.util.converter.BooleanDozerConverter">
+      <a>enGrupo</a>
+      <b>enGrupo</b>
+    </field>   
+    <field custom-converter="net.tce.util.converter.BooleanDozerConverter">
+      <a>notifEnviada</a>
+      <b>notifEnviada</b>
+    </field> 
+  </mapping>
+  
+  </mappings>

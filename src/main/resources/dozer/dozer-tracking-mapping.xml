@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+   xmlns='http://dozer.sourceforge.net'
+   xsi:schemaLocation='http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd'>
+
+  <!-- Los mapeos son bidireccionales (a menos que se indique lo contrario).
+       Es decir, este mapeo sirve para pasar de un objeto Dto a un POJO,
+       y viceversa. 
+  -->
+  
+  
+   <!-- TrackingMonitor -->
+  <mapping map-null="false" >
+    <class-a >net.tce.dto.TrackingMonitorDto</class-a>
+    <class-b>net.tce.model.TrackingMonitor</class-b>
+    <field >
+      <a>idEstadoTracking</a>
+      <b>estadoTracking.idEstadoTracking</b>
+    </field>
+     <field >
+      <a>idTrackingPostulante</a>
+      <b>trackingPostulante.idTrackingPostulante</b>
+    </field>
+     <field >
+      <a>idMonitor</a>
+      <b>monitor.idMonitor</b>
+    </field>
+     <field >
+      <a>idRelacionEmpresaPersona</a>
+      <b>relacionEmpresaPersona.idRelacionEmpresaPersona</b>
+    </field>
+    <field custom-converter="net.tce.util.converter.BooleanDozerConverter">
+      <a>enGrupo</a>
+      <b>enGrupo</b>
+    </field>
+     <field custom-converter="net.tce.util.converter.BooleanDozerConverter">
+      <a>notificacionEnviada</a>
+      <b>notificacionEnviada</b>
+    </field>
+     <field custom-converter="net.tce.util.converter.DateDozerConverter">
+      <a>fechaInicio</a>
+      <b>fechaInicio</b>
+    </field>
+     <field custom-converter="net.tce.util.converter.DateDozerConverter">
+      <a>fechaFin</a>
+      <b>fechaFin</b>
+    </field>
+  </mapping> 
+  
+  <!-- TrackingMonitor -->
+  <mapping map-null="false" >
+    <class-a >net.tce.dto.TrackingPostulanteDto</class-a>
+    <class-b>net.tce.model.TrackingPostulante</class-b>
+    <field >
+      <a>idEstadoTracking</a>
+      <b>estadoTracking.idEstadoTracking</b>
+    </field>
+     <field >
+      <a>idModeloRscPosFase</a>
+      <b>modeloRscPosFase.idModeloRscPosFase</b>
+    </field>
+     <field >
+      <a>idCandidato</a>
+      <b>candidato.idCandidato</b>
+    </field>
+     <field >
+      <a>idPosibleCandidato</a>
+      <b>posibleCandidato.idPosibleCandidato</b>
+    </field>    
+     <field custom-converter="net.tce.util.converter.DateDozerConverter">
+      <a>fechaInicio</a>
+      <b>fechaInicio</b>
+    </field>
+     <field custom-converter="net.tce.util.converter.DateDozerConverter">
+      <a>fechaFin</a>
+      <b>fechaFin</b>
+    </field>
+  </mapping> 
+  
+  </mappings>
