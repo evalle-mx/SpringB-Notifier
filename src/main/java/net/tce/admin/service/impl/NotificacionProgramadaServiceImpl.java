@@ -104,7 +104,18 @@ public class NotificacionProgramadaServiceImpl implements NotificacionProgramada
 							Mensaje.SERVICE_TYPE_ERROR, 
 							Mensaje.SERVICE_MSG_EMPRESA_PARAMETROS_001+": idPivote"));
 		    	}else {
-			    	createNP(notificacionProgramadaDto);
+		    		//Validar que exista clave de evento (TODO hacerlo dinamico a CLAVE GENERICA)
+		    		if(tipoEventoDao.getIdTipoEvento(notificacionProgramadaDto.getClaveEvento()) == null){
+		    			log4j.error("<create> No existe tipo de claveEvento " + notificacionProgramadaDto.getClaveEvento() + " en la tabla TipoEvento  ", 
+		    					new NullPointerException("where TipoEvento.clave_evento == " + notificacionProgramadaDto.getClaveEvento() + " : null (0) "));
+						
+		    			return UtilsTCE.getJsonMessageGson(null, new MensajeDto(null,null,
+								Mensaje.SERVICE_CODE_006, 
+								Mensaje.SERVICE_TYPE_ERROR, 
+								Mensaje.MSG_ERROR_EMPTY+": claveEvento"));
+		    		}else {
+		    			createNP(notificacionProgramadaDto);
+		    		}
 		    	}
 		    }	    
 			return Mensaje.SERVICE_MSG_OK_JSON;			
@@ -132,6 +143,57 @@ public class NotificacionProgramadaServiceImpl implements NotificacionProgramada
 		
 		//se crea la notificacion
 		notificacionProgramadaDao.create(notificacionProgramada);
+	}
+
+	@Override
+	public Object get(NotificacionProgramadaDto notificacionProgramadaDto) throws Exception {
+		log4j.debug("<get>");
+		
+		log4j.debug("<get> tipoNotificacion: " + notificacionProgramadaDto.getTipoNotificacion()
+				+ (notificacionProgramadaDto.getPrioridad()!=null? " prioridad: " + notificacionProgramadaDto.getPrioridad():"")
+				+ (notificacionProgramadaDto.getIntentos()!=null? " intentos: " + notificacionProgramadaDto.getIntentos():"")
+				+ (notificacionProgramadaDto.getEnviada()!=null? " enviada: " + notificacionProgramadaDto.getEnviada():"")
+		);
+		
+		if(notificacionProgramadaDto.getTipoNotificacion()!= null && notificacionProgramadaDto.getTipoNotificacion().equals("1")) {
+			log4j.debug("<get> Obtener notificaciones PROGRAMADAS");
+			Long prioridad = notificacionProgramadaDto.getPrioridad()!=null?Long.parseLong(notificacionProgramadaDto.getPrioridad()):null;
+			Long intentos = notificacionProgramadaDto.getIntentos()!=null?Long.parseLong(notificacionProgramadaDto.getIntentos()):null;
+			Boolean enviada = notificacionProgramadaDto.getEnviada()!=null?
+					(notificacionProgramadaDto.getEnviada().equals("1")?true:false):
+						null;
+			
+			List<NotificacionProgramadaDto> lsNotificaciones = notificacionProgramadaDao.get(prioridad, intentos, enviada);
+			return lsNotificaciones;
+		
+			/*  //Metodo de prueba para replicar Procesos automaticos
+			List<net.tce.model.NotificacionProgramada> lsModel = notificacionProgramadaDao.getModel(prioridad, intentos, enviada);
+			log4j.debug("# NotificacionProgramada's: " + lsModel.size() );
+			log4j.debug("NotificacionProgramada's: " + lsModel );
+			return "[]"; */
+		}
+		else { 
+			log4j.debug("<get> Obtener notificaciones [ENVIADAS]");
+			//TODO implementar algoritmo para notificaciones enviadas
+			return "[]";
+		}
+		
+		
+		
+//		if(!lsNotificaciones.isEmpty()) {
+//			sb = new StringBuilder();
+//
+//			//Procesa los textos json en vista 
+//			Iterator<NotificacionProgramadaDto> itNotificacion = lsNotificaciones.iterator();
+//			while(itNotificacion.hasNext()) {
+//				dto = itNotificacion.next();
+//				jsonString = dto.getJson();
+//				JSONObject json = new JSONObject(jsonString);
+//				log4j.debug("json: " + json.toString() );
+//				dto.setJson(json.toString() );
+//			}
+//		}
+//		return "[]";
 	}
 	
 }

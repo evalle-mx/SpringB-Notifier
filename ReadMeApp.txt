@@ -53,8 +53,23 @@ insert into tipo_evento_mecanismo
 VALUES (32,27,5);
 
 
+
 #Servicios:
 
 http://127.0.0.1:8091/AppNotifierStructured/module/notifyProg/create
 
 http://127.0.0.1:8091/AppNotifierStructured/module/allnotifications/get
+
+
+
+
+
+ 2051  echo "# SpringB-Notifier" >> README.md
+ 2052  git init
+ 2053  git status
+ 2054  git add .
+ 2055  git commit -m "1st commit: Nov 30, 2020"
+ 2056  git branch -M main
+ 2057  git branch
+ 2058  git remote add origin https://github.com/evalle-mx/SpringB-Notifier.git
+ 2059  git push -u origin main

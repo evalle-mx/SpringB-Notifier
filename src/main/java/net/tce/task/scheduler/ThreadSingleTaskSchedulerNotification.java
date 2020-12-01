@@ -78,7 +78,7 @@ public class ThreadSingleTaskSchedulerNotification {
 			        	
 			        	try {
 			        	
-				        	lsNotificacionProgramada=notificacionProgramadaDao.get(false,true);
+				        	lsNotificacionProgramada=notificacionProgramadaDao.getModel(false,true);
 				        	log4jSN.debug("lsNotificacionProgramada="+
 									(lsNotificacionProgramada == null ? null:lsNotificacionProgramada.size()));
 						
@@ -86,7 +86,7 @@ public class ThreadSingleTaskSchedulerNotification {
 							if(lsNotificacionProgramada != null &&
 							   lsNotificacionProgramada.size() > 0){
 								log4jSN.debug("Existen " + lsNotificacionProgramada.size() + " notificaciones que enviar " );
-								log4j.debug("Existen " + lsNotificacionProgramada.size() + " notificaciones que enviar " );
+								log4j.debug("Existen " + lsNotificacionProgramada.size() + " notificaciones por enviar " );
 								itNotificacionProgramada=lsNotificacionProgramada.iterator();
 								while(itNotificacionProgramada.hasNext()){
 									notificacionProgramada=itNotificacionProgramada.next();

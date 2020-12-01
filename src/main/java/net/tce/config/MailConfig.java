@@ -1,5 +1,8 @@
 package net.tce.config;
 
+/**
+ * Clase de configuracion de correo (USO DEPRECADO al sustituirse por AWS-SMS 
+ */
 import java.util.Properties;
 
 import org.apache.log4j.Logger;
@@ -13,11 +16,11 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 public class MailConfig {
 	Logger log4j = Logger.getLogger( this.getClass());	
 
-    @Value("${email.host}")
-    private String host;
+//    @Value("${email.host}")
+//    private String host;  //email-smtp.us-east-1.amazonaws.com
 
-    @Value("${email.port}")
-    private Integer port;
+//    @Value("${email.port}")
+//    private Integer port; //465
     
    /* @Value("${email.username}")
     private String username;
@@ -25,8 +28,8 @@ public class MailConfig {
     @Value("${email.password}")
     private String password;*/
     
-    @Value("${email.protocol}")
-    private String protocol;
+//    @Value("${email.protocol}")
+//    private String protocol; //smtps
     
    /* @Value("${email.username.clave}")
 	private boolean isUsuarioclave;
@@ -37,8 +40,8 @@ public class MailConfig {
     @Bean
     public JavaMailSender javaMailService() {
         JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
-        javaMailSender.setHost(host);
-        javaMailSender.setPort(port);
+//        javaMailSender.setHost(host);
+//        javaMailSender.setPort(port);
         //javaMailSender.setUsername(isUsuarioclave ? username:emailRemitente);
        // javaMailSender.setPassword(password);
         javaMailSender.setJavaMailProperties(getMailProperties());
@@ -48,7 +51,7 @@ public class MailConfig {
 
     private Properties getMailProperties() {
         Properties properties = new Properties();
-        properties.setProperty("mail.transport.protocol", protocol);
+//        properties.setProperty("mail.transport.protocol", protocol);
         properties.setProperty("mail.smtp.auth", "true");
         properties.setProperty("mail.smtp.starttls.enable", "true");
         properties.setProperty("mail.debug", "true");

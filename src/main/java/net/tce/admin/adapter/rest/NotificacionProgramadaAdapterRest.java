@@ -12,7 +12,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+/**
+ * EndPoint para servicios de <b>Notificacion (programada)</b> <br>
+ * @author Evalle
+ *
+ */
 @Controller
 @RequestMapping(Constante.URI_NOTIFY_PROG)
 public class NotificacionProgramadaAdapterRest extends ErrorMessageAdapterRest  {
@@ -30,5 +34,17 @@ public class NotificacionProgramadaAdapterRest extends ErrorMessageAdapterRest  
 	public @ResponseBody String create(@RequestBody String json) throws Exception {
 		return notificacionProgramadaService.create(gson.fromJson(json, NotificacionProgramadaDto.class));
 	  }
+	
+	/**
+	 * Controlador expuesto que ejecuta la funcion get del servicio Rol 
+	 * @param json
+	 * @return  un mensaje json con una lista de objetos Rol
+	 * @throws java.lang.Exception 
+	 */
+	@RequestMapping(value=Constante.URI_GET, method=RequestMethod.POST,headers = Constante.ACEPT_REST_JSON)
+	public @ResponseBody String get(@RequestBody String json) throws Exception  {
+		Object object=notificacionProgramadaService.get(gson.fromJson(json, NotificacionProgramadaDto.class));
+		return  (object instanceof String) ? (String)object:gson.toJson(object);
+	}
 
 }

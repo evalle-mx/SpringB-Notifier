@@ -801,5 +801,7 @@ public abstract class Constante {
 	public final static String PSG_TOCHAR_COUNT = "'FM9999'";
 	
 	public final static String DB_MANAGER_ORACLE = "ORA";
-	public final static String DB_MANAGER_PSG = "PSG";	
+	public final static String DB_MANAGER_PSG = "PSG";
+	public static final String EMAIL_DEF_SENDER = "reclutamientoTalentwise@dothr.net";
+	public static final String EMAIL_FAIL_SENDER = "soporte@dothr.net";	
 }

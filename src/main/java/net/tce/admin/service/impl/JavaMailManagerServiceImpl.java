@@ -8,6 +8,7 @@ import net.tce.app.exception.SystemTCEException;
 import net.tce.dto.CorreoTceDto;
 import net.tce.util.AmazonSESSample;
 import net.tce.util.ApplicationContextProvider;
+import net.tce.util.Constante;
 import net.tce.util.UtilsNotification;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,26 +30,27 @@ public class JavaMailManagerServiceImpl implements JavaMailManagerService{
 	
 	Logger log4j = Logger.getLogger( JavaMailManagerServiceImpl.class );
 	
-	 @Value("${email.username.clave}")
-	 private boolean isUsuarioclave;
+//	 @Value("${email.username.clave}")
+//	 private boolean isUsuarioclave;
 	 
-	 @Value("${email.username}")
-	 private String username;
+//	 @Value("${email.username}")
+//	 private String username;
 	
-//	 @Value("${email.remite}")
-	 private String emailReclutamiento = "reclutamientoTalentwise@dothr.net";//Cuenta Reclutamiento [HardCode para evitar hackeo de War]
+//	 @Value("${email.default.sender}")
+	 private String emailReclutamiento = Constante.EMAIL_DEF_SENDER;//Cuenta Reclutamiento [HardCode para evitar hackeo de War]
 	 
-//	 @Value("${email.remite.failure}")
-	 private String emailSoporte = "soporte@dothr.net"; //Cuenta soporte
+//	 @Value("${email.fail.sender}")
+	 private String emailSoporte = Constante.EMAIL_FAIL_SENDER; //Cuenta soporte
 	 
-	 @Value("${email.password.failure}")
-	 private String passwordFailure;
+//	 @Value("${email.password.failure}")
+//	 private String passwordFailure;
 	 
-	 @Value("${email.password}")
-	 private String password;
+//	 @Value("${email.password}")
+//	 private String password;
 	 
-	 @Value("${mail_path}")
-	 private String mail_path;
+	 /* Ruta de la plantilla de correo */
+//	 @Value("${mail_path}")
+//	 private String mail_path;  ///home/netto/workspDhr/notifyTemplate/
 	 
 	JavaMailSenderImpl javaMailSender;
 	MimeMessage message;
@@ -85,82 +87,83 @@ public class JavaMailManagerServiceImpl implements JavaMailManagerService{
 	
 	
 	
-	/**
-	 * metodo que genera un correo electronico por medio de MimeMessage con
-	 * información obtenida de un objeto CorreoTceDto
-	 * @param correo
-	 * @throws SystemTCEException 
-	 */
-	public void sendMail(CorreoTceDto correo) throws SystemTCEException {
-		if(correo!=null){
-			
-			//Prueba 2
-			//System.out.println("Adjuntando archivo..");
-			//FileSystemResource file = new FileSystemResource(correo.getAdjunto());
-			//helper.addAttachment("Adjunto.jpg", file);
-			
-			//Prueba 3: agregar imagen in-Line
-			// let's include the infamous windows Sample file (this time copied to c:/)
-			//FileSystemResource res = new FileSystemResource(new java.io.File("C:/Server/images/rss.png"));
-			//helper.addInline("identifier1234", res);
-			log4j.debug("sendMail() ->  emailReclutamiento:"+emailReclutamiento+
-					" emailSoporte="+emailSoporte+
-					" passwordFailure="+passwordFailure+
-					" getDestinatario="+correo.getDestinatario()+
-					" isUsuarioclave="+isUsuarioclave);
-			
-	        try {
-	        	message = mailSender.createMimeMessage();
-	        	helper = new MimeMessageHelper(message, true);
-	        	//Para adjuntar archivos
-			 	//helper.setFrom( new InternetAddress(MAIL_SERVER_USERNAME) );
-	        	
-	        	//se obtiene el bean javaMailSender
-        		javaMailSender=(JavaMailSenderImpl)ApplicationContextProvider.
-													getBean("javaMailService");
-        		
-        		log4j.debug("sendMail() ->  javaMailSender="+javaMailSender+
-    					" claveEvento="+correo.getClaveEvento());
-	        	
-	        	//si hay un evento fatal 
-	        	if(correo.getClaveEvento().equals(UtilsNotification.CLAVE_EVENTO_ERROR_FATAL) ) {	        		 
-	        			        		 
-	        		//se pone el usuario y pass del remitente
-	        		javaMailSender.setUsername(isUsuarioclave ? username:emailSoporte);
-	        		javaMailSender.setPassword(passwordFailure);
-	        		
-	        		//si se ocupa la opcion de usuario_clave
-		        	if(isUsuarioclave){
-		        		helper.setFrom(new InternetAddress(emailSoporte));
-		        	}
-	        	}else {
-	        		
-	        		//se pone el usuario y pass del remitente
-	        		 javaMailSender.setUsername(isUsuarioclave ? username:emailReclutamiento);
-	        	     javaMailSender.setPassword(password);
-	        		
-	        		//si se ocupa la opcion de usuario_clave
-		        	if(isUsuarioclave){
-		        		helper.setFrom(new InternetAddress(emailReclutamiento));
-		        	}
-	        	}
-	        	
-				helper.setTo(new InternetAddress(correo.getDestinatario()));
-				helper.setSubject(correo.getAsunto());
-				message.setText(correo.getCuerpo(),
-						 		UtilsNotification.MAIL_MESSTEXT_CHARSET,
-						 		UtilsNotification.MAIL_MESSTEXT_SUBTYPE);
-				//log4j.debug("Enviando E-mail -> getCuerpo: "+correo.getCuerpo());
-	        	log4j.debug("sendMail() -> Enviando E-mail: \"".concat(correo.getAsunto()).concat("\" a ").
-	        				concat(correo.getDestinatario()) );
-	        	mailSender.send(message);
-	        }
-	        catch (Exception ex) {
-	        	log4j.fatal("Error al mandar correo al destinatario:"+correo.getDestinatario()+" ",ex); 
-	        	throw new SystemTCEException("Error al mandar correo al destinatario:"+correo.getDestinatario()+" ",ex);
-	        }
-		 }
-	}
+//	/**
+//	 * metodo que genera un correo electronico por medio de MimeMessage con
+//	 * información obtenida de un objeto CorreoTceDto (DEPRECADO POR SMS)
+//	 * @param correo
+//	 * @throws SystemTCEException 
+//	 */
+//	public void sendMail(CorreoTceDto correo) throws SystemTCEException {
+//		if(correo!=null){
+//			
+//			//Prueba 2
+//			//System.out.println("Adjuntando archivo..");
+//			//FileSystemResource file = new FileSystemResource(correo.getAdjunto());
+//			//helper.addAttachment("Adjunto.jpg", file);
+//			
+//			//Prueba 3: agregar imagen in-Line
+//			// let's include the infamous windows Sample file (this time copied to c:/)
+//			//FileSystemResource res = new FileSystemResource(new java.io.File("C:/Server/images/rss.png"));
+//			//helper.addInline("identifier1234", res);
+//			log4j.debug("sendMail() ->  emailReclutamiento:"+emailReclutamiento+
+//					" emailSoporte="+emailSoporte+
+//					" passwordFailure="+passwordFailure+
+//					" getDestinatario="+correo.getDestinatario()+
+//					" isUsuarioclave="+isUsuarioclave
+//					);
+//			
+//	        try {
+//	        	message = mailSender.createMimeMessage();
+//	        	helper = new MimeMessageHelper(message, true);
+//	        	//Para adjuntar archivos
+//			 	//helper.setFrom( new InternetAddress(MAIL_SERVER_USERNAME) );
+//	        	
+//	        	//se obtiene el bean javaMailSender
+//        		javaMailSender=(JavaMailSenderImpl)ApplicationContextProvider.
+//													getBean("javaMailService");
+//        		
+//        		log4j.debug("sendMail() ->  javaMailSender="+javaMailSender+
+//    					" claveEvento="+correo.getClaveEvento());
+//	        	
+//	        	//si hay un evento fatal 
+//	        	if(correo.getClaveEvento().equals(UtilsNotification.CLAVE_EVENTO_ERROR_FATAL) ) {	        		 
+//	        			        		 
+//	        		//se pone el usuario y pass del remitente
+//	        		javaMailSender.setUsername(isUsuarioclave ? username:emailSoporte);
+//	        		javaMailSender.setPassword(passwordFailure);
+//	        		
+//	        		//si se ocupa la opcion de usuario_clave
+//		        	if(isUsuarioclave){
+//		        		helper.setFrom(new InternetAddress(emailSoporte));
+//		        	}
+//	        	}else {
+//	        		
+//	        		//se pone el usuario y pass del remitente
+//	        		 javaMailSender.setUsername(isUsuarioclave ? username:emailReclutamiento);
+//	        	     javaMailSender.setPassword(password);
+//	        		
+//	        		//si se ocupa la opcion de usuario_clave
+//		        	if(isUsuarioclave){
+//		        		helper.setFrom(new InternetAddress(emailReclutamiento));
+//		        	}
+//	        	}
+//	        	
+//				helper.setTo(new InternetAddress(correo.getDestinatario()));
+//				helper.setSubject(correo.getAsunto());
+//				message.setText(correo.getCuerpo(),
+//						 		UtilsNotification.MAIL_MESSTEXT_CHARSET,
+//						 		UtilsNotification.MAIL_MESSTEXT_SUBTYPE);
+//				//log4j.debug("Enviando E-mail -> getCuerpo: "+correo.getCuerpo());
+//	        	log4j.debug("sendMail() -> Enviando E-mail: \"".concat(correo.getAsunto()).concat("\" a ").
+//	        				concat(correo.getDestinatario()) );
+//	        	mailSender.send(message);
+//	        }
+//	        catch (Exception ex) {
+//	        	log4j.fatal("Error al mandar correo al destinatario:"+correo.getDestinatario()+" ",ex); 
+//	        	throw new SystemTCEException("Error al mandar correo al destinatario:"+correo.getDestinatario()+" ",ex);
+//	        }
+//		 }
+//	}
 
 
 	@Override
